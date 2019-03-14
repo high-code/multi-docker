@@ -19,3 +19,17 @@ after_success:
  - docker push ankhomenko/multi-nginx
  - docker push ankhomenko/multi-server
  - docker push ankhomenko/multi-worker
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-central-1
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-eu-central-1-660271560963
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
